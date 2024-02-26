@@ -26,6 +26,12 @@ public partial class Player : CharacterBody2D
 	[Export]
 	private Sprite2D _playerSprite;
 
+	[ExportGroup("Rocket Scene")]
+	[Export]
+	private PackedScene _rocketScene;
+
+	private Rocket _rocket;
+
 
 	// adjust velocity vector
 	private Vector2 _velocityVector;
@@ -47,6 +53,8 @@ public partial class Player : CharacterBody2D
 
 		_playerSpriteWeidth = _playerSprite.GetRect().Size.X * _playerSpriteScale / 2.0f;
 		_playerSpriteHeight = _playerSprite.GetRect().Size.Y * _playerSpriteScale / 2.0f;
+
+		GD.Print(_rocket);
     }
 
     public override void _Process(double delta)
@@ -135,6 +143,10 @@ public partial class Player : CharacterBody2D
 
 	private void ShootRocket()
 	{
+		Vector2 launchOffset = new Vector2(75.0f, 0.0f);
+		_rocket = _rocketScene.Instantiate<Rocket>();
+		AddChild(_rocket);
+		_rocket.GlobalPosition += launchOffset;
 		GD.Print("Rocket Launched!!");
 	}
 }

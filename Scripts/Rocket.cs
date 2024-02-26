@@ -8,7 +8,7 @@ public partial class Rocket : Area2D
 	private float _speed;
 
 	float _time = 0.0f;
-	float _accerelationDuration = 1.0f;
+	float _accerelationDuration = 0.5f;
 
     public override void _PhysicsProcess(double delta)
     {
