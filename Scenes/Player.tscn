@@ -13,6 +13,7 @@ MoveLeft = &"move_left"
 MoveRight = &"move_right"
 MoveUp = &"move_up"
 MoveDown = &"move_down"
+Shoot = &"shoot"
 _playerSpeed = 250.0
 _playerSprite = NodePath("GFX")
 

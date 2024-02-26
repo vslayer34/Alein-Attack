@@ -16,6 +16,9 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public StringName MoveDown { get; private set; }
 
+	[Export]
+	public StringName Shoot { get; private set; }
+
 
 	[ExportGroup("Player properties")]
 	[Export]
@@ -44,6 +47,15 @@ public partial class Player : CharacterBody2D
 
 		_playerSpriteWeidth = _playerSprite.GetRect().Size.X * _playerSpriteScale / 2.0f;
 		_playerSpriteHeight = _playerSprite.GetRect().Size.Y * _playerSpriteScale / 2.0f;
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+		if (Input.IsActionJustPressed(Shoot))
+		{
+			ShootRocket();
+		}
     }
 
 
@@ -118,5 +130,11 @@ public partial class Player : CharacterBody2D
 		
 
 		GlobalPosition = _modifiedGlobalPosition;
+	}
+
+
+	private void ShootRocket()
+	{
+		GD.Print("Rocket Launched!!");
 	}
 }

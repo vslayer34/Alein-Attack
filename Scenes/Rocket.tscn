@@ -10,7 +10,7 @@ height = 108.0
 [node name="Rocket" type="Area2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_xvkgk")
-_speed = 10.0
+_speed = 300.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_g3qu6")

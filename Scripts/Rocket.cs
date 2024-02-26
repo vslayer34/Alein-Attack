@@ -29,14 +29,12 @@ public partial class Rocket : Area2D
 		{
 			_launchSpeed = Mathf.Lerp(0.0f, _speed / 4.0f, _time / _accerelationDuration);
 			_time += delta;
-			GD.Print("Time: " + _time);
-			GD.Print(_launchSpeed);
-			GlobalPosition += Vector2.Right * _launchSpeed;
+			GlobalPosition += Vector2.Right * _launchSpeed * delta;
 			return;
 		}
 
 		_launchSpeed = _speed;
 		
-		GlobalPosition += Vector2.Right * _launchSpeed;
+		GlobalPosition += Vector2.Right * _launchSpeed * delta;
 	}
 }
