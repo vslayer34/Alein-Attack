@@ -27,3 +27,5 @@ texture = ExtResource("1_5yul1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(9, 0)
 shape = SubResource("CapsuleShape2D_skb60")
+
+[node name="SpawnPoint" type="Node" parent="."]

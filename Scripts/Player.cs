@@ -1,5 +1,7 @@
 using Godot;
+using MEC;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
@@ -29,8 +31,11 @@ public partial class Player : CharacterBody2D
 	[ExportGroup("Rocket Scene")]
 	[Export]
 	private PackedScene _rocketScene;
-
+	
+	
+	// Reference to the rocket script and node spawn position
 	private Rocket _rocket;
+	private Node _spawnNode;
 
 
 	// adjust velocity vector
@@ -45,24 +50,28 @@ public partial class Player : CharacterBody2D
 	private float _playerSpriteHeight;
 
 
+	private bool _isRocketReady = true;
+
+
     public override void _Ready()
     {
         base._Ready();
-		GD.Print(_playerSprite.GetRect().Size);
+		_spawnNode = GetNode<Node>("SpawnPoint");
+
 		float _playerSpriteScale = _playerSprite.Transform.Scale.X;
 
 		_playerSpriteWeidth = _playerSprite.GetRect().Size.X * _playerSpriteScale / 2.0f;
 		_playerSpriteHeight = _playerSprite.GetRect().Size.Y * _playerSpriteScale / 2.0f;
 
-		GD.Print(_rocket);
+		GD.Print(_spawnNode.Name);
     }
 
     public override void _Process(double delta)
     {
         base._Process(delta);
-		if (Input.IsActionJustPressed(Shoot))
+		if (Input.IsActionJustPressed(Shoot) && _isRocketReady)
 		{
-			ShootRocket();
+			Timing.RunCoroutine(ShootRocket());
 		}
     }
 
@@ -140,13 +149,23 @@ public partial class Player : CharacterBody2D
 		GlobalPosition = _modifiedGlobalPosition;
 	}
 
-
-	private void ShootRocket()
+	
+	/// <summary>
+	/// Instansiate the rocket and set its launch offset
+	/// </summary>
+	private IEnumerator<double> ShootRocket()
 	{
-		Vector2 launchOffset = new Vector2(75.0f, 0.0f);
+		_isRocketReady = false;
+		float launchOffset = 75.0f;
+		Vector2 launchVector = new Vector2(GlobalPosition.X + launchOffset, GlobalPosition.Y);
+
 		_rocket = _rocketScene.Instantiate<Rocket>();
-		AddChild(_rocket);
-		_rocket.GlobalPosition += launchOffset;
+		_spawnNode.AddChild(_rocket);
+		
+		_rocket.GlobalPosition = launchVector;
 		GD.Print("Rocket Launched!!");
+		yield return Timing.WaitForSeconds(0.6f);
+		_isRocketReady = true;
 	}
+	
 }
