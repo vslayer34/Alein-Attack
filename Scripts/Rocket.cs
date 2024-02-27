@@ -6,9 +6,19 @@ public partial class Rocket : Area2D
 	[ExportGroup("Rocked Properties")]
 	[Export]
 	private float _speed;
+	[Export]
+	private VisibleOnScreenNotifier2D _visibilityNotifier;
 
 	float _time = 0.0f;
 	float _accerelationDuration = 0.5f;
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+		_visibilityNotifier.ScreenExited += OnScreenExited;
+    }
+
 
     public override void _PhysicsProcess(double delta)
     {
@@ -36,5 +46,11 @@ public partial class Rocket : Area2D
 		_launchSpeed = _speed;
 		
 		GlobalPosition += Vector2.Right * _launchSpeed * delta;
+	}
+
+
+	private void OnScreenExited()
+	{
+		QueueFree();
 	}
 }
