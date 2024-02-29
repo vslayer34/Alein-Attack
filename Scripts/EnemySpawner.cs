@@ -6,7 +6,6 @@ public partial class EnemySpawner : Node2D
 	[Export]
 	private PackedScene _enemyShipScene;
 
-	[Export]
 	private Node2D _spawnPoints;
 
 	// Reference to newly created enemy ship
