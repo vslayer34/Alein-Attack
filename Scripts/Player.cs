@@ -164,7 +164,7 @@ public partial class Player : CharacterBody2D
 		
 		_rocket.GlobalPosition = launchVector;
 		GD.Print("Rocket Launched!!");
-		yield return Timing.WaitForSeconds(0.6f);
+		yield return Timing.WaitForSeconds(0.2f);
 		_isRocketReady = true;
 	}
 	

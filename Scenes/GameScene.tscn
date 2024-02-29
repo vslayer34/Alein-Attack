@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cubxm8io1tdwc" path="res://Assets/Textures/bg.png" id="1_ie1xu"]
 [ext_resource type="PackedScene" uid="uid://r50ernk5hxvq" path="res://Scenes/Player.tscn" id="2_7ympk"]
-[ext_resource type="PackedScene" uid="uid://ib0na46bg0ve" path="res://Scenes/Rocket.tscn" id="3_xhuvo"]
+[ext_resource type="PackedScene" uid="uid://brobxxcoyangm" path="res://Scenes/EnemyShip.tscn" id="4_ymsxo"]
 
 [node name="Game Scene" type="Node2D"]
 
@@ -11,8 +11,8 @@ offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("1_ie1xu")
 
-[node name="Player" parent="TextureRect" instance=ExtResource("2_7ympk")]
-position = Vector2(192, 320)
+[node name="Player" parent="." instance=ExtResource("2_7ympk")]
+position = Vector2(65, 320)
 
-[node name="Rocket" parent="." instance=ExtResource("3_xhuvo")]
-position = Vector2(299, 316)
+[node name="EnemyShip" parent="." instance=ExtResource("4_ymsxo")]
+position = Vector2(1194, 421)

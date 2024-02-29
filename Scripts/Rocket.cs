@@ -37,7 +37,7 @@ public partial class Rocket : Area2D
 
 		while (_time <= _accerelationDuration)
 		{
-			_launchSpeed = Mathf.Lerp(0.0f, _speed / 4.0f, _time / _accerelationDuration);
+			_launchSpeed = Mathf.Lerp(0.0f, _speed / 2.0f, _time / _accerelationDuration);
 			_time += delta;
 			GlobalPosition += Vector2.Right * _launchSpeed * delta;
 			return;
