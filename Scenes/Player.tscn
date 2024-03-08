@@ -9,6 +9,7 @@ radius = 22.0
 height = 100.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_playerSprite")]
+collision_mask = 2
 script = ExtResource("1_gphsk")
 MoveLeft = &"move_left"
 MoveRight = &"move_right"

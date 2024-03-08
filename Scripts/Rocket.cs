@@ -19,7 +19,6 @@ public partial class Rocket : Area2D
 		_visibilityNotifier.ScreenExited += OnScreenExited;
     }
 
-
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -52,5 +51,18 @@ public partial class Rocket : Area2D
 	private void OnScreenExited()
 	{
 		QueueFree();
+	}
+
+	/// <summary>
+	/// Connected signal to the Area 2d Node on the rocket
+	/// </summary>
+	/// <param name="area">CBody collided with the rocket</param>
+	private void OnAreaEntered(Area2D area)
+	{
+		if (area is IHitRocket hit)
+		{
+			hit?.Die();
+			QueueFree();
+		}
 	}
 }

@@ -2,12 +2,11 @@ using Godot;
 using System;
 using System.ComponentModel;
 
-public partial class EnemyShip : Area2D
+public partial class EnemyShip : Area2D, IHitRocket
 {
 	[ExportGroup("Enemy ship properties")]
 	[Export]
 	private float _speed;
-
 
     public override void _PhysicsProcess(double delta)
     {
@@ -20,4 +19,13 @@ public partial class EnemyShip : Area2D
 	{
 		Translate(Vector2.Left * delta * _speed);
 	}
+
+
+	/// <summary>
+	/// Called when the enemy is hit by the rocket
+	/// </summary>
+	public void Die()
+    {
+        QueueFree();
+    }
 }
