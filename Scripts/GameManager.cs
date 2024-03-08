@@ -9,7 +9,7 @@ public partial class GameManager : Node2D
 	/// <param name="area">the enemy ship that entere the area</param>
 	private void OnDeathZoneEntered(Area2D area)
 	{
-		if (area is IHitRocket escapedEnemyShip)
+		if (area is IDamagable escapedEnemyShip)
 		{
 			escapedEnemyShip.Die();
 		}

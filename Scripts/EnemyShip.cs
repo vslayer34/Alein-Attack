@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.ComponentModel;
 
-public partial class EnemyShip : Area2D, IHitRocket
+public partial class EnemyShip : Area2D, IDamagable
 {
 	[ExportGroup("Enemy ship properties")]
 	[Export]

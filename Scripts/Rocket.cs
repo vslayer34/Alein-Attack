@@ -59,7 +59,7 @@ public partial class Rocket : Area2D
 	/// <param name="area">CBody collided with the rocket</param>
 	private void OnAreaEntered(Area2D area)
 	{
-		if (area is IHitRocket hit)
+		if (area is IDamagable hit)
 		{
 			hit?.Die();
 			QueueFree();
