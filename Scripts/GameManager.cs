@@ -60,15 +60,17 @@ public partial class GameManager : Node2D
 	}
 
 
-	private void IncreaseScore()
+	private void IncreaseScore(EnemyShip enemyShip)
 	{
 		_gameScore += 100;
 		GD.Print($"Score: {_gameScore}");
+		enemyShip.OnDeath -= IncreaseScore;
 	}
 
 	private void OnNewEnemySpawned(EnemyShip newSpawnedEnemy)
 	{
-		newSpawnedEnemy.Connect(EnemyShip.SignalName.OnDeath, Callable.From(IncreaseScore));
+		// newSpawnedEnemy.Connect(EnemyShip.SignalName.OnDeath, Callable.From(IncreaseScore));
+		newSpawnedEnemy.OnDeath += IncreaseScore;
 	}
 
 

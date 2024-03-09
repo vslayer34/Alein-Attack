@@ -4,7 +4,7 @@ using System;
 public partial class EnemyShip : Area2D, IDamagable
 {
 	[Signal]
-	public delegate void OnDeathEventHandler();
+	public delegate void OnDeathEventHandler(EnemyShip enemyShip);
 	// public static Action OnEnemyShipDestroyed;
 
 	[ExportGroup("Enemy ship properties")]
@@ -46,7 +46,7 @@ public partial class EnemyShip : Area2D, IDamagable
 	public void Die()
     {
 		// OnEnemyShipDestroyed?.Invoke();
-		EmitSignal(SignalName.OnDeath);
+		EmitSignal(SignalName.OnDeath, this);
         QueueFree();
     }
 }
