@@ -3,6 +3,8 @@ using System;
 
 public partial class EnemySpawner : Node2D
 {
+	[Signal]
+	public delegate void OnNewEnemySpawnedEventHandler(EnemyShip enemyShip);
 	[Export]
 	private PackedScene _enemyShipScene;
 
@@ -19,8 +21,8 @@ public partial class EnemySpawner : Node2D
 
 	private void OnTimerTimeout()
 	{
-		GD.Print("Time is out");
 		_enemyShip = _enemyShipScene.Instantiate<EnemyShip>();
+		EmitSignal(SignalName.OnNewEnemySpawned, _enemyShip);
 
 		ChooseRandomSpawnPoint().AddChild(_enemyShip);
 	}

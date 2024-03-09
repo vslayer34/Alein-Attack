@@ -3,8 +3,11 @@ using MEC;
 using System;
 using System.Collections.Generic;
 
-public partial class Player : CharacterBody2D
+public partial class Player : CharacterBody2D, IDamagable
 {
+	[Signal]
+	public delegate void OnPlayerCollisionEventHandler();
+
 	[ExportGroup("Input Map Actions")]
 	[Export]
 	public StringName MoveLeft { get; private set; }
@@ -62,8 +65,6 @@ public partial class Player : CharacterBody2D
 
 		_playerSpriteWeidth = _playerSprite.GetRect().Size.X * _playerSpriteScale / 2.0f;
 		_playerSpriteHeight = _playerSprite.GetRect().Size.Y * _playerSpriteScale / 2.0f;
-
-		GD.Print(_spawnNode.Name);
     }
 
     public override void _Process(double delta)
@@ -161,11 +162,20 @@ public partial class Player : CharacterBody2D
 
 		_rocket = _rocketScene.Instantiate<Rocket>();
 		_spawnNode.AddChild(_rocket);
-		
 		_rocket.GlobalPosition = launchVector;
-		GD.Print("Rocket Launched!!");
+
 		yield return Timing.WaitForSeconds(0.2f);
+		
 		_isRocketReady = true;
 	}
-	
+
+
+	/// <summary>
+	/// implementation for take damge for hte player
+	/// </summary>
+    public void Die()
+    {
+		EmitSignal(SignalName.OnPlayerCollision);
+    }
+
 }

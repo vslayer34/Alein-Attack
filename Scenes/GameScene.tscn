@@ -29,4 +29,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
 shape = SubResource("RectangleShape2D_axxsd")
 
+[connection signal="OnPlayerCollision" from="Player" to="." method="OnPlayerCollision"]
+[connection signal="OnNewEnemySpawned" from="EnemySpawner" to="." method="OnNewEnemySpawned"]
 [connection signal="area_entered" from="DeathZone" to="." method="OnDeathZoneEntered"]

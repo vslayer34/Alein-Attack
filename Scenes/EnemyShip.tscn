@@ -22,3 +22,5 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_cge2v")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
