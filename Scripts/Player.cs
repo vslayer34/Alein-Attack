@@ -173,7 +173,7 @@ public partial class Player : CharacterBody2D, IDamagable
 	/// <summary>
 	/// implementation for take damge for hte player
 	/// </summary>
-    public void Die()
+    public void Die(bool isHitByRocket)
     {
 		EmitSignal(SignalName.OnPlayerCollision);
     }

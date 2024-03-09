@@ -62,7 +62,7 @@ public partial class Rocket : Area2D
 	{
 		if (area is IDamagable hit)
 		{
-			hit?.Die();
+			hit?.Die(true);
 			QueueFree();
 		}
 	}

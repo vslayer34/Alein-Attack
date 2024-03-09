@@ -10,6 +10,9 @@ public partial class GameManager : Node2D
 	public delegate void OnUpdateLivesUIEventHandler(int amount);
 
 	[Export]
+	private GameOverScreen _gameOverScreen;
+
+	[Export]
 	private int _playerLivesLimit = 3;
 
 	private int _currentLives;
@@ -19,6 +22,7 @@ public partial class GameManager : Node2D
     public override void _Ready()
     {
         base._Ready();
+		GetTree().Paused = false;
 		_currentLives = _playerLivesLimit;
 		PrintLivesToConsole();
 		// EnemyShip.OnEnemyShipDestroyed += IncreaseScore;
@@ -40,9 +44,9 @@ public partial class GameManager : Node2D
     /// <param name="area">the enemy ship that entere the area</param>
     private void OnDeathZoneEntered(Area2D area)
 	{
-		if (area is IDamagable escapedEnemyShip)
+		if (area is IDamagable)
 		{
-			escapedEnemyShip.Die();
+			area.QueueFree();
 		}
 	}
 
@@ -59,6 +63,8 @@ public partial class GameManager : Node2D
 		{
 			GD.Print("Game Over!");
 			GetTree().Paused = true;
+			
+			GetTree().CreateTimer(1.5f).Timeout += () => _gameOverScreen.Visible = true;
 			return;
 		}
 	}
@@ -91,4 +97,10 @@ public partial class GameManager : Node2D
 
 
 	private void PrintLivesToConsole() => GD.Print($"Lives: {_currentLives} of {_playerLivesLimit}");
+
+
+	/// <summary>
+	/// Current game score
+	/// </summary>
+	public int GameScore { get => _gameScore; }
 }

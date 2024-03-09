@@ -43,10 +43,14 @@ public partial class EnemyShip : Area2D, IDamagable
 	/// <summary>
 	/// Called when the enemy is hit by the rocket
 	/// </summary>
-	public void Die()
+	public void Die(bool isHitByRocket = false)
     {
 		// OnEnemyShipDestroyed?.Invoke();
-		EmitSignal(SignalName.OnDeath, this);
+		if (isHitByRocket)
+		{
+			EmitSignal(SignalName.OnDeath, this);
+		}
+		
         QueueFree();
     }
 }

@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2gk6xffhsgdc"]
+
+[ext_resource type="FontFile" uid="uid://pffgwp3c3cce" path="res://Assets/Font/Kenney Blocks.ttf" id="1_7m2ep"]
+[ext_resource type="Script" path="res://Scripts/GameOverScreen.cs" id="1_esdfr"]
+
+[sub_resource type="Theme" id="Theme_kbwt1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewfwx"]
+bg_color = Color(0.32549, 0.00784314, 0.243137, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="FontFile" id="FontFile_eh7rq"]
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yjtad"]
+font = SubResource("FontFile_eh7rq")
+font_size = 50
+font_color = Color(1, 0.823529, 0.580392, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6vek"]
+font = ExtResource("1_7m2ep")
+font_size = 30
+font_color = Color(1, 0.462745, 0.184314, 1)
+
+[node name="GameOverUI" type="Control" node_paths=PackedStringArray("_scoreLabel", "_retryBtn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_esdfr")
+_scoreLabel = NodePath("Panel/ScoreText")
+_retryBtn = NodePath("Panel/Button")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -271.0
+offset_top = -175.0
+offset_right = 271.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(300, 300)
+theme = SubResource("Theme_kbwt1")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ewfwx")
+
+[node name="GameOverText" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 55.0
+offset_bottom = 122.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_yjtad")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreText" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.5
+offset_top = -23.0
+offset_right = 149.5
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Score: 9999999"
+label_settings = SubResource("LabelSettings_l6vek")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+process_mode = 3
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_left = 171.0
+offset_top = 220.0
+offset_right = 371.0
+offset_bottom = 280.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 41
+text = "RETRY"
+icon_alignment = 1

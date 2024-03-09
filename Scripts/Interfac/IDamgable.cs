@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 public interface IDamagable
 {
-    void Die();    
+    void Die(bool isHitByRocket = false);    
 }
