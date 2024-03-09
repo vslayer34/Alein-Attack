@@ -1,14 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpojctea48imr"]
+[gd_scene load_steps=7 format=3 uid="uid://dpojctea48imr"]
 
 [ext_resource type="Script" path="res://Scripts/HUDManager.cs" id="1_1bee7"]
 [ext_resource type="FontFile" uid="uid://pffgwp3c3cce" path="res://Assets/Font/Kenney Blocks.ttf" id="1_5ddal"]
+[ext_resource type="Texture2D" uid="uid://dvbq1p7cpptuu" path="res://Assets/Textures/orb.png" id="3_g4hwi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cxqpb"]
 font = ExtResource("1_5ddal")
 font_size = 48
 outline_color = Color(0, 0, 0, 1)
 
-[node name="HUD" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_a2nxh"]
+font = ExtResource("1_5ddal")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ffy1"]
+font = ExtResource("1_5ddal")
+font_size = 60
+
+[node name="HUD" type="Control" node_paths=PackedStringArray("_livesLabels")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,12 +25,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1bee7")
+_livesLabels = NodePath("LivesSprite/XText/LivesAmount")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 offset_left = 25.0
-offset_top = 14.0
+offset_top = 25.0
 offset_right = 457.0
-offset_bottom = 86.0
+offset_bottom = 97.0
 text = "Score: 999999"
 label_settings = SubResource("LabelSettings_cxqpb")
+
+[node name="LivesSprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 25.0
+offset_right = -40.0
+offset_bottom = 125.0
+grow_horizontal = 0
+texture = ExtResource("3_g4hwi")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="XText" type="Label" parent="LivesSprite"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -25.0
+offset_right = 6.99996
+offset_bottom = 20.0
+grow_vertical = 2
+pivot_offset = Vector2(22.5, 22.5)
+text = "X"
+label_settings = SubResource("LabelSettings_a2nxh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LivesAmount" type="Label" parent="LivesSprite/XText"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -63.04
+offset_top = -47.5
+offset_right = 26.96
+offset_bottom = 42.5
+grow_vertical = 2
+pivot_offset = Vector2(45, 45)
+text = "3
+"
+label_settings = SubResource("LabelSettings_8ffy1")
+horizontal_alignment = 1
+vertical_alignment = 1

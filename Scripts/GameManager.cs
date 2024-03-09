@@ -6,6 +6,9 @@ public partial class GameManager : Node2D
 	[Signal]
 	public delegate void OnScoreIncreasedEventHandler(int score);
 
+	[Signal]
+	public delegate void OnUpdateLivesUIEventHandler(int amount);
+
 	[Export]
 	private int _playerLivesLimit = 3;
 
@@ -19,6 +22,9 @@ public partial class GameManager : Node2D
 		_currentLives = _playerLivesLimit;
 		PrintLivesToConsole();
 		// EnemyShip.OnEnemyShipDestroyed += IncreaseScore;
+
+		EmitSignal(SignalName.OnScoreIncreased, _gameScore);
+		EmitSignal(SignalName.OnUpdateLivesUI, _currentLives);
     }
 
     public override void _ExitTree()
@@ -47,7 +53,7 @@ public partial class GameManager : Node2D
 	private void ReducePlayerLives()
 	{
 		_currentLives--;
-		PrintLivesToConsole();
+		EmitSignal(SignalName.OnUpdateLivesUI, _currentLives);
 
 		if (_currentLives < 1)
 		{
