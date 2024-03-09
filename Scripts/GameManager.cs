@@ -3,6 +3,9 @@ using System;
 
 public partial class GameManager : Node2D
 {
+	[Signal]
+	public delegate void OnScoreIncreasedEventHandler(int score);
+
 	[Export]
 	private int _playerLivesLimit = 3;
 
@@ -60,10 +63,17 @@ public partial class GameManager : Node2D
 	}
 
 
+	/// <summary>
+	/// Increase the player score by fixed amount 100
+	/// for each ship destroyed
+	/// </summary>
+	/// <param name="enemyShip"></param>
 	private void IncreaseScore(EnemyShip enemyShip)
 	{
 		_gameScore += 100;
-		GD.Print($"Score: {_gameScore}");
+		
+		EmitSignal(SignalName.OnScoreIncreased, _gameScore);
+
 		enemyShip.OnDeath -= IncreaseScore;
 	}
 

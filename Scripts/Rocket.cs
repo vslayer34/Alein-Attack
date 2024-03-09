@@ -6,6 +6,7 @@ public partial class Rocket : Area2D
 	[ExportGroup("Rocked Properties")]
 	[Export]
 	private float _speed;
+	
 	[Export]
 	private VisibleOnScreenNotifier2D _visibilityNotifier;
 
