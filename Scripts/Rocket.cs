@@ -3,21 +3,30 @@ using System;
 
 public partial class Rocket : Area2D
 {
+	public Action OnRocketGainSpeed;
+
 	[ExportGroup("Rocked Properties")]
 	[Export]
 	private float _speed;
+	[Export]
+	private AudioStreamPlayer2D _rocketLaunchSound;
 	
 	[Export]
 	private VisibleOnScreenNotifier2D _visibilityNotifier;
 
-	float _time = 0.0f;
-	float _accerelationDuration = 0.5f;
+
+
+	private float _time = 0.0f;
+	private float _accerelationDuration = 0.5f;
+
+	private bool _isSoundPlayed = false;
 
 
     public override void _Ready()
     {
         base._Ready();
 		_visibilityNotifier.ScreenExited += OnScreenExited;
+		OnRocketGainSpeed += PlayLaunchSound;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -46,11 +55,24 @@ public partial class Rocket : Area2D
 		_launchSpeed = _speed;
 		
 		GlobalPosition += Vector2.Right * _launchSpeed * delta;
+		OnRocketGainSpeed?.Invoke();
+		
+	}
+
+
+	private void PlayLaunchSound()
+	{
+		if (!_isSoundPlayed)
+		{
+			_isSoundPlayed = true;
+			_rocketLaunchSound.Play();
+		}
 	}
 
 
 	private void OnScreenExited()
 	{
+		OnRocketGainSpeed -= PlayLaunchSound;
 		QueueFree();
 	}
 

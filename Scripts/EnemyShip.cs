@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class EnemyShip : Area2D, IDamagable
 {
@@ -10,6 +11,9 @@ public partial class EnemyShip : Area2D, IDamagable
 	[ExportGroup("Enemy ship properties")]
 	[Export]
 	private float _speed;
+
+	[Export]
+	private AudioStreamPlayer2D _enemyHitSound;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -45,12 +49,15 @@ public partial class EnemyShip : Area2D, IDamagable
 	/// </summary>
 	public void Die(bool isHitByRocket = false)
     {
+		_enemyHitSound.Play();
 		// OnEnemyShipDestroyed?.Invoke();
 		if (isHitByRocket)
 		{
 			EmitSignal(SignalName.OnDeath, this);
 		}
 		
+		// await Task.Delay((int)_enemyHitSound.Stream.GetLength() * 1000).;
+
         QueueFree();
     }
 }

@@ -19,10 +19,22 @@ public partial class GameManager : Node2D
 	private int _gameScore;
 
 
+	[ExportCategory("Gameplay sounds")]
+	[Export]
+	private AudioStreamPlayer2D _enemyHitSound;
+
+	[Export]
+	private AudioStreamPlayer2D _playerExplodeSound;
+
+	[Export]
+	private AudioStreamPlayer2D _rocketLaunchedSound;
+
+
     public override void _Ready()
     {
         base._Ready();
 		GetTree().Paused = false;
+
 		_currentLives = _playerLivesLimit;
 		PrintLivesToConsole();
 		// EnemyShip.OnEnemyShipDestroyed += IncreaseScore;
@@ -61,6 +73,7 @@ public partial class GameManager : Node2D
 
 		if (_currentLives < 1)
 		{
+			
 			GD.Print("Game Over!");
 			GetTree().Paused = true;
 			

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D, IDamagable
 {
+
 	[Signal]
 	public delegate void OnPlayerCollisionEventHandler();
 

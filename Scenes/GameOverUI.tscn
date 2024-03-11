@@ -13,6 +13,9 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [sub_resource type="FontFile" id="FontFile_eh7rq"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/50/0/ascent = 0.0
 cache/0/50/0/descent = 0.0
 cache/0/50/0/underline_position = 0.0
