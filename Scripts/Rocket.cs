@@ -43,6 +43,7 @@ public partial class Rocket : Area2D
 	private void LaunchRocket(float delta)
 	{
 		float _launchSpeed;
+		OnRocketGainSpeed?.Invoke();
 
 		while (_time <= _accerelationDuration)
 		{
@@ -55,7 +56,6 @@ public partial class Rocket : Area2D
 		_launchSpeed = _speed;
 		
 		GlobalPosition += Vector2.Right * _launchSpeed * delta;
-		OnRocketGainSpeed?.Invoke();
 		
 	}
 

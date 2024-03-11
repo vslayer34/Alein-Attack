@@ -6,14 +6,20 @@ public partial class EnemyShip : Area2D, IDamagable
 {
 	[Signal]
 	public delegate void OnDeathEventHandler(EnemyShip enemyShip);
-	// public static Action OnEnemyShipDestroyed;
+	public static Action OnEnemyShipDestroyed;
 
 	[ExportGroup("Enemy ship properties")]
 	[Export]
 	private float _speed;
 
 	[Export]
-	private AudioStreamPlayer2D _enemyHitSound;
+	private GameEvents _gameEvents;
+
+
+    public override void _Ready()
+    {
+        base._Ready();
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -49,8 +55,8 @@ public partial class EnemyShip : Area2D, IDamagable
 	/// </summary>
 	public void Die(bool isHitByRocket = false)
     {
-		_enemyHitSound.Play();
-		// OnEnemyShipDestroyed?.Invoke();
+		// _gameEvents.OnEnemyDeath?.Invoke();
+		OnEnemyShipDestroyed?.Invoke();
 		if (isHitByRocket)
 		{
 			EmitSignal(SignalName.OnDeath, this);

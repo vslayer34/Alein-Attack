@@ -13,7 +13,13 @@ public partial class GameManager : Node2D
 	private GameOverScreen _gameOverScreen;
 
 	[Export]
+	private GameEvents _gameEvents;
+
+	[Export]
 	private int _playerLivesLimit = 3;
+
+	[Export]
+	private Player _player;
 
 	private int _currentLives;
 	private int _gameScore;
@@ -33,19 +39,22 @@ public partial class GameManager : Node2D
     public override void _Ready()
     {
         base._Ready();
-		GetTree().Paused = false;
 
 		_currentLives = _playerLivesLimit;
 		PrintLivesToConsole();
-		// EnemyShip.OnEnemyShipDestroyed += IncreaseScore;
+		EnemyShip.OnEnemyShipDestroyed += PlayDeathSound;
+
+		// _gameEvents.OnEnemyDeath += PlayDeathSound;
 
 		EmitSignal(SignalName.OnScoreIncreased, _gameScore);
 		EmitSignal(SignalName.OnUpdateLivesUI, _currentLives);
     }
 
+
     public override void _ExitTree()
     {
         base._ExitTree();
+		EnemyShip.OnEnemyShipDestroyed -= PlayDeathSound;
 		// EnemyShip.OnEnemyShipDestroyed -= IncreaseScore;
     }
 
@@ -73,9 +82,10 @@ public partial class GameManager : Node2D
 
 		if (_currentLives < 1)
 		{
-			
+			_playerExplodeSound.Play();
 			GD.Print("Game Over!");
-			GetTree().Paused = true;
+			_player.Visible = false;
+			_player.ProcessMode = ProcessModeEnum.Disabled;
 			
 			GetTree().CreateTimer(1.5f).Timeout += () => _gameOverScreen.Visible = true;
 			return;
@@ -107,6 +117,11 @@ public partial class GameManager : Node2D
 		// newSpawnedEnemy.Connect(EnemyShip.SignalName.OnDeath, Callable.From(IncreaseScore));
 		newSpawnedEnemy.OnDeath += IncreaseScore;
 	}
+
+	private void PlayDeathSound()
+    {
+        _enemyHitSound.Play();
+    }
 
 
 	private void PrintLivesToConsole() => GD.Print($"Lives: {_currentLives} of {_playerLivesLimit}");
