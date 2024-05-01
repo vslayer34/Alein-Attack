@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://brobxxcoyangm"]
+[gd_scene load_steps=4 format=3 uid="uid://brobxxcoyangm"]
 
 [ext_resource type="Texture2D" uid="uid://b1qrysqntertr" path="res://Assets/Textures/enemy_ship.png" id="1_qv58t"]
 [ext_resource type="Script" path="res://Scripts/EnemyShip.cs" id="1_wgidk"]
-[ext_resource type="Script" path="res://Scripts/Resources/GameEvents.cs" id="2_t2ywg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cge2v"]
 radius = 30.0
@@ -13,7 +12,6 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_wgidk")
 _speed = 200.0
-_gameEvents = ExtResource("2_t2ywg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708

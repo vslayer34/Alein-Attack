@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://54ty4h07is0d"]
+[gd_scene load_steps=10 format=3 uid="uid://54ty4h07is0d"]
 
 [ext_resource type="Texture2D" uid="uid://cubxm8io1tdwc" path="res://Assets/Textures/bg.png" id="1_ie1xu"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_y7dcj"]
 [ext_resource type="PackedScene" uid="uid://r50ernk5hxvq" path="res://Scenes/Player.tscn" id="2_7ympk"]
 [ext_resource type="PackedScene" uid="uid://dpojctea48imr" path="res://Scenes/HUD.tscn" id="2_8dmwx"]
-[ext_resource type="Script" path="res://Scripts/Resources/GameEvents.cs" id="2_dhec6"]
 [ext_resource type="PackedScene" uid="uid://d2gk6xffhsgdc" path="res://Scenes/GameOverUI.tscn" id="3_6e6uq"]
 [ext_resource type="PackedScene" uid="uid://buyneimpirs25" path="res://Scenes/EnemySpawner.tscn" id="3_846j7"]
 [ext_resource type="AudioStream" uid="uid://d18ujlrp26ks0" path="res://Assets/Audio/explode.wav" id="8_kvsas"]
@@ -16,7 +15,6 @@ size = Vector2(60, 720)
 [node name="GameScene" type="Node2D" node_paths=PackedStringArray("_gameOverScreen", "_player", "_enemyHitSound", "_playerExplodeSound")]
 script = ExtResource("1_y7dcj")
 _gameOverScreen = NodePath("UI/GameOverUI")
-_gameEvents = ExtResource("2_dhec6")
 _player = NodePath("Player")
 _enemyHitSound = NodePath("EnemyHitSound")
 _playerExplodeSound = NodePath("PlayerExplodeSound")
