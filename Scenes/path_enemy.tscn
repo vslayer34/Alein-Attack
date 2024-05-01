@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://tth8bt2dvvak"]
+
+[ext_resource type="PackedScene" uid="uid://brobxxcoyangm" path="res://Scenes/EnemyShip.tscn" id="1_acqa2"]
+
+[sub_resource type="Curve2D" id="Curve2D_sn733"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -69, 850, -58.7338, 190.488, 58.7338, -190.488, 447, 641, -36.5102, 101.594, 36.5102, -101.594, 964, 501, 80.9574, 114.293, -80.9574, -114.293, 978, 208, 126.992, -52.3842, -126.992, 52.3842, 618, 98, -87.3071, -214.299, 87.3071, 214.299, 263, 489, -49.2094, 19.0488, 49.2094, -19.0488, 701, 598, -9.52441, 106.356, 9.52441, -106.356, 878, 412, 0, 0, 0, 0, 777, -186, 0, 0, 0, 0, 658, -491)
+}
+point_count = 10
+
+[node name="PathEnemy" type="Path2D"]
+curve = SubResource("Curve2D_sn733")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-69, 850)
+rotation = -0.384843
+loop = false
+
+[node name="EnemyShip" parent="PathFollow2D" instance=ExtResource("1_acqa2")]
+rotation = 3.14159
+_speed = 0.0
