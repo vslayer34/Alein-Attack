@@ -127,6 +127,13 @@ public partial class GameManager : Node2D
 	private void PrintLivesToConsole() => GD.Print($"Lives: {_currentLives} of {_playerLivesLimit}");
 
 
+	private void OnEnemySpawnerPathEnemySpawned(PathEnemy pathEnemy)
+	{
+		AddChild(pathEnemy);
+		pathEnemy.Enemy.OnDeath += IncreaseScore;
+	}
+
+
 	/// <summary>
 	/// Current game score
 	/// </summary>

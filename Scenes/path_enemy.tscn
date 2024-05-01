@@ -9,9 +9,10 @@ _data = {
 }
 point_count = 10
 
-[node name="PathEnemy" type="Path2D"]
+[node name="PathEnemy" type="Path2D" node_paths=PackedStringArray("Enemy")]
 curve = SubResource("Curve2D_sn733")
 script = ExtResource("1_y5mc1")
+Enemy = NodePath("PathFollow2D/EnemyShip")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(-69, 850)

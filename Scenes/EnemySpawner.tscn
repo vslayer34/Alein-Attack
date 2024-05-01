@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://buyneimpirs25"]
+[gd_scene load_steps=4 format=3 uid="uid://buyneimpirs25"]
 
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.cs" id="1_udeum"]
 [ext_resource type="PackedScene" uid="uid://brobxxcoyangm" path="res://Scenes/EnemyShip.tscn" id="2_n3ash"]
+[ext_resource type="PackedScene" uid="uid://tth8bt2dvvak" path="res://Scenes/path_enemy.tscn" id="3_hp7sw"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_udeum")
 _enemyShipScene = ExtResource("2_n3ash")
+_pathEnemyScene = ExtResource("3_hp7sw")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
@@ -29,6 +31,9 @@ position = Vector2(1360, 675)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+autostart = true
+
+[node name="PathEnemyTimer" type="Timer" parent="."]
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

@@ -3,6 +3,8 @@ using System;
 
 public partial class PathEnemy : Path2D
 {
+    [Export]
+    public EnemyShip Enemy { get; private set; }
     private PathFollow2D _pathFollow;
     private float _enemySpeed = 0.15f;
 
